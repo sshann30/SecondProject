@@ -1,47 +1,40 @@
-require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
-
-var db = require("./models");
-
+var express = require('express');
 var app = express();
-var PORT = process.env.PORT || 3000;
+var path = require('path');
+var axios = require('axios');
+var bodyParser = require('body-parser');
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static("public"));
+// create application/json parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("app/public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
+//routes 
+
+require("./app/routes/html-routes")(app);
+
+
+
+//http request to fortnite tracker api
+var uri = 'https://api.fortnitetracker.com/v1/profile/'
+// https://api.fortnitetracker.com/v1/profile/{platform}/{epic-nickname}    need to pass through parameters
+// pc, xbl, psn
+// TRN-Api-Key: 80f005a2-53d2-48e2-99a1-cac872ef77bf
+
+app.post('/api/stats', function(req,res){
+  axios
+  .get(uri + req.body.platformDropDownBtn + '/' + req.body.epicNickName, {
+    headers: {
+      'TRN-Api-Key': '80f005a2-53d2-48e2-99a1-cac872ef77bf'
+    }
   })
-);
-app.set("view engine", "handlebars");
-
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
-var syncOptions = { force: false };
-
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
-});
-
-module.exports = app;
+  .then(function(response){
+    console.log(response.data)
+  })
+})
+app.get("/api/stats",function(req,res){
+  console.log(req.body)
+  res.send("hello");
+})
+var port = process.env.PORT || 3000;
+app.listen(port);
