@@ -1,0 +1,124 @@
+
+input[type="text"]{
+width: 395px;
+height: 40px;
+position: absolute;
+top: 4px;
+margin-left: 33%;
+border: 20px solid darkorchid;
+border-radius: 3px;
+padding: 0px;
+transition: .8s all;
+right: 370px;
+
+}
+input[type="text"]:focus{
+    width: -400px;
+    border: 2px solid darkorchid;
+    transition: 1s all
+}
+
+h3{
+    color: darkorchid
+}
+.sidebar-nav2 {
+    position: absolute;
+    left: 200px;
+    top: 100px;
+    width: 220px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav2 li {
+    position: relative; 
+    line-height: 20px;
+    display: inline-block;
+    width: 100%;
+}
+.sidebar-nav2 li:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 3px;
+    background-color: #1c1c1c;
+    -webkit-transition: width .2s ease-in;
+      -moz-transition:  width .2s ease-in;
+       -ms-transition:  width .2s ease-in;
+            transition: width .2s ease-in;
+
+}
+
+
+.sidebar-nav2 li:first-child a{
+	color: white;
+	background-color: #1a1a1a;
+}
+.sidebar-nav2 li:nth-child(2):before{
+	background-color: darkorchid;
+}
+.sidebar-nav2 li:nth-child(3):before{
+	background-color:darkorchid;
+}
+
+.sidebar-nav2 li:nth-child(4):before{
+	background-color: darkorchid;
+}
+
+
+
+.sidebar-nav2 li:hover:before,
+.sidebar-nav2 li.open:hover:before{
+	width: 100%;
+	-webkit-transition: width .2s ease-in;
+      -moz-transition:  width .2s ease-in;
+       -ms-transition:  width .2s ease-in;
+            transition: width .2s ease-in;
+}
+
+.sidebar-nav2 li a{
+	display: block;
+	color: #ddd;
+	text-decoration: none;
+	padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav2 li a:hover,
+.sidebar-nav2 li a:active,
+.sidebar-nav2 li a:focus,
+.sidebar-nav2 li.open a:hover,
+.sidebar-nav2 li.open a:active,
+.sidebar-nav2 li.open a:focus{
+	color: #fff;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.sidebar-nav2 > .sidebar-brand{
+	height: 70px;
+	font-size: 22px;
+	line-height: 46px;
+	
+}
+
+
+.sidebar-nav2 .dropdown-menu{
+	position: relative;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
+	border:none;
+	background-color: #222;
+	box-shadow: none;
+}
+#submit{
+    position: relative;
+    left: 398px;
+    top: 5px;
+    height:38px;
+}
